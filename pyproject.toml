@@ -1,0 +1,20 @@
+[project]
+name = "nicepy"
+version = "0.1.0"
+description = "Advanced OOP file and directory management library"
+authors = [
+    {name = "Amin"}
+    
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+[project.urls]
+Homepage = "https://github.com/amin13m/nicepy"
+Documentation = "https://github.com/amin13m/nicepy#readme"
+Repository = "https://github.com/amin13m/nicepy"
+Issues = "https://github.com/amin13m/nicepy/issues"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

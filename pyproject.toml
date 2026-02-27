@@ -1,20 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "nicepy"
+name = "nicepython"
 version = "0.1.0"
-description = "Advanced OOP file and directory management library"
-authors = [
-    {name = "Amin"}
-    
-]
+description = "Advanced OOP file and directory management library with powerful search, logging and chainable file operations."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+
+authors = [
+    {name = "amin13m" , email="aminm13aminm@gmail.com"}
+]
+
+keywords = [
+    "pathlib",
+    "filesystem",
+    "path",
+    "file",
+    "search",
+    "logging",
+    "oop"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
 [project.urls]
 Homepage = "https://github.com/amin13m/nicepy"
-Documentation = "https://github.com/amin13m/nicepy#readme"
 Repository = "https://github.com/amin13m/nicepy"
 Issues = "https://github.com/amin13m/nicepy/issues"
 
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["nicepy*"]

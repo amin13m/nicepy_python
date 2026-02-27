@@ -43,7 +43,7 @@ pip install -e .
 
 🔹 Future PyPI Installation
 
-pip install nicepy
+pip install nicepython
 
 ------------------------------------------------------------
 

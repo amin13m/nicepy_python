@@ -3,7 +3,8 @@ from nicepy import NicePath
 
 
 
-dir = NicePath("D:/Projects/nicepy_python")
+dir = NicePath("D:/progects" ,base_dir = __file__)
 p = NicePath("tests/newfolder/tet.txt")
 
-print(dir.tree())
+
+#print(dir.tree(ignore_hidden=True), p.size)

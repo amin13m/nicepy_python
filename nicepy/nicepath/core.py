@@ -29,8 +29,8 @@ class NicePath:
         - _input_path: مسیر فایل/پوشه ورودی (str یا Path)
         - base_dir: مسیر پایه برای مسیرهای نسبی
     """
-    _input_path: str | Path
-    base_dir: Path | None = None
+    _input_path: str | Path #inter your path (absolute or relative)
+    base_dir: Path | None = None #if the path is relative inter (__file__ or by defulte = root) 
 
     def __post_init__(self):
         """Initialize internal resolved path"""

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NicePy Documentation</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+        display: flex;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        width: 260px;
+        background: #1e293b;
+        height: 100vh;
+        padding: 20px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        overflow-y: auto;
+        transition: 0.3s;
+      }
+
+      .sidebar h2 {
+        color: #38bdf8;
+        margin-bottom: 20px;
+      }
+
+      .sidebar a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #cbd5e1;
+        border-radius: 6px;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+
+      .sidebar a:hover,
+      .sidebar a.active {
+        background: #334155;
+      }
+
+      /* CONTENT */
+      .content {
+        margin-left: 260px;
+        padding: 40px;
+        width: 100%;
+      }
+
+      section {
+        margin-bottom: 60px;
+      }
+
+      h1 {
+        color: #38bdf8;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        margin-top: 25px;
+        margin-bottom: 10px;
+        color: #7dd3fc;
+      }
+
+      pre {
+        background: #1e293b;
+        padding: 15px;
+        border-radius: 8px;
+        overflow: auto;
+        margin-top: 10px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #334155;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      /* HAMBURGER */
+      .hamburger {
+        display: none;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        font-size: 26px;
+        cursor: pointer;
+        color: white;
+        z-index: 1000;
+      }
+
+      @media (max-width: 900px) {
+        .sidebar {
+          left: -260px;
+        }
+
+        .sidebar.open {
+          left: 0;
+        }
+
+        .content {
+          margin-left: 0;
+          padding: 70px 20px;
+        }
+
+        .hamburger {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <div class="sidebar" id="sidebar">
+        
+      <h2 style="display: flex; align-items: center;"><img src="/docs/logo.jpg" style="width: 40px; align-items: center;border-radius: 5px;margin: 3px;" alt="nicepy"> NicePy Docs</h2>
+      
+      <a onclick="scrollToSection('intro')">Introduction</a>
+      <a onclick="scrollToSection('paths')">Path Types</a>
+      <a onclick="scrollToSection('fileops')">File Operations</a>
+      <a onclick="scrollToSection('search')">Search</a>
+      <a onclick="scrollToSection('tree')">Tree</a>
+      <a onclick="scrollToSection('logall')">logAll</a>
+    </div>
+
+    <div class="content">
+      <section id="intro">
+        <h1>NicePath Documentation</h1>
+        <p>
+          NicePath is an advanced OOP wrapper around pathlib with smart search,
+          logging and safety systems.
+        </p>
+      </section>
+
+      <section id="paths">
+        <h1>Path Types</h1>
+
+        <h2>Absolute Path</h2>
+        <pre>
+NicePath("C:/Projects/file.txt")
+</pre
+        >
+
+        <h2>Relative Path</h2>
+        <pre>
+NicePath("data/file.txt")
+</pre
+        >
+
+        <h2>Caller Relative Path</h2>
+        <pre>
+NicePath("data/file.txt" , base_dir = __file__)
+</pre
+        >
+        <br />
+        <p>
+          NicePath resolves relative paths based on the caller file location,
+          not the execution directory.
+        </p>
+      </section>
+
+      <section id="fileops">
+        <h1>File Operations</h1>
+
+        <h2>Write</h2>
+        <pre>
+NicePath("a.txt").write("Hello")
+</pre
+        >
+
+        <h2>Read</h2>
+        <pre>
+NicePath("a.txt").read()
+</pre
+        >
+
+        <h2>Append</h2>
+        <pre>
+NicePath("a.txt").append("More")
+</pre
+        >
+
+        <h2>Move</h2>
+        <pre>
+NicePath("a.txt").move_to("b.txt")
+</pre
+        >
+
+        <h2>Copy</h2>
+        <pre>
+NicePath("a.txt").copy_to("backup/a.txt")
+</pre
+        >
+      </section>
+
+      <section id="search">
+        <h1>Smart Search</h1>
+
+        <pre>
+dir = NicePath("project")
+
+dir.search(
+    name_contains="test",
+    suffix=".py",
+    recursive=True,
+    ignore_venv=True
+)
+</pre
+        >
+
+        <table>
+          <tr>
+            <th>Argument</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>name_contains</td>
+            <td>Partial filename match</td>
+          </tr>
+          <tr>
+            <td>suffix</td>
+            <td>Extension filter</td>
+          </tr>
+          <tr>
+            <td>recursive</td>
+            <td>Include subfolders</td>
+          </tr>
+          <tr>
+            <td>ignore_hidden</td>
+            <td>Ignore hidden files</td>
+          </tr>
+          <tr>
+            <td>ignore_venv</td>
+            <td>Ignore virtual env</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="tree">
+        <h1>Tree</h1>
+
+        <pre>
+NicePath("project").tree(
+    recursive=True,
+    ignore_hidden=True,
+    ignore_venv=True
+)
+</pre
+        >
+
+        <p>Generates a graphical folder tree.</p>
+      </section>
+
+      <section id="logall">
+        <h1>logAll</h1>
+
+        <pre>
+root = NicePath("project")
+log = NicePath("log.txt")
+
+root.logAll(
+    file_output=log,
+    search_suffix=".py",
+    ignore_venv=True
+)
+</pre
+        >
+
+        <h2>Safety System</h2>
+
+        <ul>
+          <li>safety_max_files</li>
+          <li>safety_max_size</li>
+          <li>safety_max_depth</li>
+          <li>safety_disable_limits</li>
+        </ul>
+
+        <p>
+          If safety limit is reached: • Process stops safely • Warning is logged
+          • No crash occurs
+        </p>
+      </section>
+    </div>
+
+    <script>
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({
+          behavior: "smooth",
+        });
+
+        document
+          .querySelectorAll(".sidebar a")
+          .forEach((a) => a.classList.remove("active"));
+        event.target.classList.add("active");
+
+        if (window.innerWidth < 900) {
+          document.getElementById("sidebar").classList.remove("open");
+        }
+      }
+
+      function toggleMenu() {
+        document.getElementById("sidebar").classList.toggle("open");
+      }
+    </script>
+  </body>
+</html>

@@ -12,7 +12,7 @@ if not logger.handlers:
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
-logger.setLevel(30)
+logger.setLevel(10)
 
 
 

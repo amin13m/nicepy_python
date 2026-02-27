@@ -137,9 +137,20 @@
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 
     <div class="sidebar" id="sidebar">
-        
-      <h2 style="display: flex; align-items: center;"><img src="/docs/logo.jpg" style="width: 40px; align-items: center;border-radius: 5px;margin: 3px;" alt="nicepy"> NicePy Docs</h2>
-      
+      <h2 style="display: flex; align-items: center">
+        <img
+          src="logo.jpg"
+          style="
+            width: 40px;
+            align-items: center;
+            border-radius: 5px;
+            margin: 3px;
+          "
+          onerror="this.style.display ='none'"
+        />
+        NicePy Docs
+      </h2>
+
       <a onclick="scrollToSection('intro')">Introduction</a>
       <a onclick="scrollToSection('paths')">Path Types</a>
       <a onclick="scrollToSection('fileops')">File Operations</a>

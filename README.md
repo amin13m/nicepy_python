@@ -1,54 +1,56 @@
-Tired of writing hundreds of lines with pathlib's verbose syntax? 🤯
+<p align="center">  
+  <img src="docs/logo.jpg" alt="NicePy Logo" width="150"/>  
+</p>  
 
-Meet NicePath.
+# NicePy
 
-A clean OOP path object with dozens of short, chainable methods and properties.
+Tired of writing hundreds of lines with pathlib's verbose syntax? 🤯  
 
-No try/except boilerplate.
-Just .read(), .write(), .move_to() … and it works.
+Meet NicePath, a clean OOP path object with dozens of short, chainable methods and properties.  
 
-✨ Smart search
-🌳 Tree visualization
-📝 Automatic logging of hundreds of files with a single method
+No try/except boilerplate. Just .read(), .write(), .move_to() … and it works.  
 
-Less code. More clarity.
+Smart search | Tree visualization | Automatic logging  
 
-------------------------------------------------------------
-
-🚀 NicePy
-
-Advanced OOP File & Directory Management Library for Python
-Built on top of pathlib with logging, search engine, tree view and smart utilities.
+Less code. More clarity.  
 
 ------------------------------------------------------------
 
-✨ Why NicePy?
+## What is NicePy?
+
+Advanced OOP File & Directory Management Library for Python  
+Built on top of pathlib with logging, search engine, tree view, and smart utilities.
+
+### Why NicePy?
 
 NicePath is a powerful wrapper around Python’s built-in pathlib, designed to make file management:
 
-✔ Cleaner
-✔ More readable
-✔ More powerful
-✔ Fully logged
-✔ Searchable
-✔ Tree-view ready
+- Cleaner
+- More readable
+- More powerful
+- Fully logged
+- Searchable
+- Tree-view ready
 
 ------------------------------------------------------------
 
-📦 Installation
+## Installation
 
-🔹 Local Development Mode
-
+**Local Development Mode:**
+```
 pip install -e .
+```
 
-🔹 Future PyPI Installation
-
+**PyPI Installation (Future):**
+```
 pip install nicepython
+```
 
 ------------------------------------------------------------
 
-🚀 Quick Start
+## Quick Start
 
+```python
 from nicepy import NicePath
 
 # Create path
@@ -70,34 +72,40 @@ print(root.tree())
 # Search files
 for f in root.search(suffix=".py"):
     print(f.path)
+```
 
 ------------------------------------------------------------
 
-🌳 Tree Visualization
+## Tree Visualization
 
+```python
 root = NicePath("my_project")
 print(root.tree(ignore_hidden=False))
+```
 
-Example Output:
-
+**Example Output:**
+```text
 my_project
 ├── main.py
 ├── nicepy
 │   ├── core.py
 └── README.md
+```
 
 ------------------------------------------------------------
 
-🔎 Advanced Search
+## Advanced Search
 
+```python
 root.search(
     name_contains="core",
     suffix=".py",
     recursive=True,
     ignore_hidden=True
 )
+```
 
-Supported Filters:
+**Supported Filters:**
 
 - name_contains
 - suffix
@@ -108,17 +116,13 @@ Supported Filters:
 - recursive
 - ignore_hidden
 
-If nothing is found → returns [] (never raises error)
+Returns empty list if nothing is found. Never raises error.
 
 ------------------------------------------------------------
 
-🧾 logAll – Full Project Logger
+## logAll – Full Project Logger
 
-Generate:
-- Full tree structure
-- Content of matched files
-- Save everything into a file
-
+```python
 project = NicePath("my_project")
 output = NicePath("log.txt")
 
@@ -126,89 +130,89 @@ project.logAll(
     file_output=output,
     search_suffix=".py"
 )
+```
 
-Useful for:
-- Project snapshot
-- Debug logging
-- Code export
-- Archiving structure
+Generates:
 
-------------------------------------------------------------
+- Full tree structure
+- Content of matched files
+- Saves everything into a file
 
-📚 Available Methods
-
-write(data)              → Write text to file
-read()                   → Read file content
-append(data)             → Append to file
-delete()                 → Remove file or directory
-copy_to(dest)            → Copy file/folder
-move_to(dest)            → Move file/folder
-search(...)              → Smart search engine
-tree(...)                → Visual tree display
-logAll(...)              → Full structured log export
-
-Properties:
-exists
-is_file
-is_dir
-size
-created_time
-modified_time
+Use for project snapshot, debug logging, code export, or archiving structure.
 
 ------------------------------------------------------------
 
-⚖ NicePy vs pathlib
+## Available Methods
 
-Feature                        | pathlib | NicePy
+| Method        | Description                        |
+|---------------|------------------------------------|
+| write(data)   | Write text to file                 |
+| read()        | Read file content                  |
+| append(data)  | Append to file                     |
+| delete()      | Remove file or directory           |
+| copy_to(dest) | Copy file/folder                   |
+| move_to(dest) | Move file/folder                   |
+| search(...)   | Smart search engine                |
+| tree(...)     | Visual tree display                |
+| logAll(...)   | Full structured log export         |
+
+**Properties:**
+
+- exists
+- is_file
+- is_dir
+- size
+- created_time
+- modified_time
+
 ------------------------------------------------------------
-Basic read/write               | Yes     | Yes
-Append built-in                | No      | Yes
-Tree view                      | No      | Yes
-Search engine                  | No      | Yes
-Regex search                   | No      | Yes
-Logging system                 | No      | Yes
-Full project log export        | No      | Yes
-Unified OOP interface          | Basic   | Advanced
-Custom exceptions              | No      | Yes
+
+## NicePy vs pathlib
+
+| Feature                  | pathlib | NicePy |
+|---------------------------|---------|--------|
+| Basic read/write          | Yes     | Yes    |
+| Append built-in           | No      | Yes    |
+| Tree view                 | No      | Yes    |
+| Search engine             | No      | Yes    |
+| Regex search              | No      | Yes    |
+| Logging system            | No      | Yes    |
+| Full project log export   | No      | Yes    |
+| Unified OOP interface     | Basic   | Advanced |
+| Custom exceptions         | No      | Yes    |
 
 ------------------------------------------------------------
 
-## ⚠️ Safety Limits in NicePath
+## Safety Limits
 
-NicePath library includes powerful methods like logAll, tree, and search that can traverse large directories or read/write many files.
+Methods like logAll, tree, and search have default limits to prevent overload:
 
-To prevent accidental overloads, these methods have default safety limits:
+- logAll: max_files=500, max_total_size=10_000_000 bytes (10 MB)
+- tree & search: ignore_venv=True, can limit recursion/depth
 
-- logAll: limits the maximum number of files and total size it processes.
-  - Default max_files=500
-  - Default max_total_size=10_000_000 bytes (10 MB)
-- tree and search:
-  - Can ignore virtual environments and library folders (ignore_venv=True by default)
-  - Can limit recursion depth or number of entries if needed.
+**Behavior on limit reach:**
 
-Behavior when limits are reached:
+- Operation does not crash
+- Partial results written
+- Warning logged via logger.warning
 
-- The operation does not crash.
-- Partial results are written to the output file.
-- A warning message is logged with logger.warning stating that safety limits were reached.
-
-Customizing Safety:
-
-You can override safety defaults in method calls:
-
-`python
+**Override safety:**
+```python
 dir = NicePath("D:/Projects")
 output_file = dir / "log.txt"
 
 dir.logAll(
     file_output=output_file,
     search_suffix=".py",
-    max_files=1000,          # increase limit
-    max_total_size=50_000_000, # 50 MB
-    ignore_venv=False         # include virtual environments
+    max_files=1000,
+    max_total_size=50_000_000,
+    ignore_venv=False
 )
+```
 
-🛠 Logging System
+------------------------------------------------------------
+
+## Logging System
 
 All critical operations are logged:
 
@@ -217,83 +221,67 @@ All critical operations are logged:
 - Failure
 - Error reason
 
-Helps debugging and production stability.
+Ensures debugging & production stability.
 
 ------------------------------------------------------------
 
-🧪 Testing
+## Testing
 
+```
 pytest -v
+```
 
 ------------------------------------------------------------
 
-🏗 Project Structure
+## Project Structure
 
-nicepy_python
-├── pycache
-│   ├── init.pythonc
-│   └── main.cpython-314.pyc
-├── nicepy
-│   ├── pycache
-│   │   ├── init.pyc
-│   │   └── logger.cpython-314.pyc
-│   ├── nicepath
-│   │   ├── pycache
-│   │   │   ├── init.pyc
-│   │   │   ├── core.cpython-314.pyc
-│   │   │   └── exceptios.cpython-314.pyc
-│   │   ├── init.py
+```text
+nicepy_python/
+├── nicepy/
+│   ├── nicepath/
 │   │   ├── core.py
 │   │   └── exceptios.py
-│   ├── init.py
 │   └── logger.py
-├── nicepy.egg-info
-│   ├── dependency_links.txt
-│   ├── PKG-INFO
-│   ├── SOURCES.txt
-│   └── top_level.txt
-├── tests
-│   ├── pycache
-│   │   ├── test_nicepath.cpython-314-pytest-9.0.2.pyc
-│   │   └── test_nicepath.cpython-314.pyc
-│   ├── newfolder
-│   │   ├── ksc.txt
-│   │   ├── tet.txt
-│   │   └── text.txt
-│   └── test_nicepath.py
-├── init.py
+├── tests/
 ├── main.py
+├── README.md
 ├── pyproject.toml
-└── README.md
+└── docs/
+    └── index.html
+```
 
 ------------------------------------------------------------
 
-🔮 Roadmap
+## Roadmap
 
-[ ] PyPI release
-[ ] Async support
-[ ] Caching search engine
-[ ] Watchdog integration
-[ ] Colored tree output
-[ ] CLI interface
+- [ ] PyPI release
+- [ ] Async support
+- [ ] Caching search engine
+- [ ] Watchdog integration
+- [ ] Colored tree output
+- [ ] CLI interface
 
 ------------------------------------------------------------
 
-👤 Author
+## Documentation
 
-Amin
+Live SPA Documentation: https://amin13m.github.io/nicepy_python/
+
+------------------------------------------------------------
+
+## Author
+
+Amin  
 GitHub: https://github.com/amin13m
 
 ------------------------------------------------------------
 
-📜 License
+## License
 
 MIT License
 
 ------------------------------------------------------------
 
-💎 Philosophy
+## Philosophy
 
-Clean code.
-Predictable behavior.
-Zero surprise file handling.
+Clean code. Predictable behavior. Zero surprise file handling.

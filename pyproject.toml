@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nicepython"
-version = "0.1.0"
+version = "0.1.1"
 description = "Advanced OOP file and directory management library with powerful search, logging and chainable file operations."
 readme = "README.md"
 requires-python = ">=3.9"
